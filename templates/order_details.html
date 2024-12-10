@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Order Details</h1>
+<h2>{{ sandwich_name }}</h2>
+
+{% if details %}
+    <ul>
+    {% for colleague_name, qty in details.items() %}
+        <li>{{ colleague_name }}: x{{ qty }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No orders for this sandwich yet.</p>
+{% endif %}
+
+<p><a href="{{ url_for('order_page') }}">Back to Orders</a></p>
+{% endblock %}

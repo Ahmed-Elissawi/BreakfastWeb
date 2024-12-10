@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Order Page</h1>
+<p>Welcome <strong>{{ session.user_name }}</strong></p>
+
+<form method="post" class="order-form">
+    {% if is_admin %}
+        <label>Select Colleague:</label>
+        <select name="colleague_name">
+            {% for c in colleagues %}
+                <option value="{{ c.name }}">{{ c.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+    {% endif %}
+    <label>Select Sandwich:</label>
+    <select name="sandwich_name">
+        {% for s in sandwiches %}
+            <option value="{{ s.sandwich_name }}">{{ s.sandwich_name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label>Quantity:</label>
+    <input type="number" name="quantity" value="1" min="1">
+    <br><br>
+    <input type="submit" value="Add to Cart">
+</form>
+
+<h2>Current Orders</h2>
+<div class="order-list">
+{% if orders_by_sandwich %}
+    <ul>
+    {% for item in orders_by_sandwich %}
+        <li>
+            <strong>{{ item.sandwich_name }}</strong>: (x{{ item.total_quantity }})
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No orders yet.</p>
+{% endif %}
+</div>
+{% endblock %}

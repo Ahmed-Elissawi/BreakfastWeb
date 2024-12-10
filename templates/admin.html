@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Admin Panel</h1>
+<p><a href="{{ url_for('order_page') }}">Back to Orders</a></p>
+
+<h2>Add Colleague</h2>
+<form method="post" class="admin-form">
+    <input type="hidden" name="action" value="add_colleague">
+    <input type="text" name="colleague_name" placeholder="Name">
+    <input type="password" name="colleague_password" placeholder="Password">
+    <label>Is Admin: <input type="checkbox" name="colleague_is_admin"></label><br><br>
+    <input type="submit" value="Add Colleague">
+</form>
+
+<h2>Add Sandwich</h2>
+<form method="post" class="admin-form">
+    <input type="hidden" name="action" value="add_sandwich">
+    <input type="text" name="sandwich_name" placeholder="Sandwich Name">
+    <input type="text" name="sandwich_price" placeholder="Price">
+    <input type="submit" value="Add Sandwich">
+</form>
+
+<h2>Clear Cart</h2>
+<form method="post" class="admin-form">
+    <input type="hidden" name="action" value="clear_cart">
+    <input type="submit" value="Clear Cart">
+</form>
+{% endblock %}
